@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <random>
+#include <cstddef>
 
 struct Point {
   const double x;
@@ -23,15 +24,15 @@ auto validate_input(std::istream& in) {
     std::exit(1);
   }
 
-  return static_cast<size_t>(input);
+  return static_cast<std::size_t>(input);
 }
 
 int main() {
   std::cout << "How many samples to take for estimating pi?\n";
 
-  const size_t iterations = validate_input(std::cin);
-  size_t accepted_count = 0;
-  for (size_t i = 0; i < iterations; ++i) {
+  const auto iterations = validate_input(std::cin);
+  std::size_t accepted_count = 0;
+  for (auto i = 0; i < iterations; ++i) {
     if (is_point_in_circle(random_point_in_square())) {
       ++accepted_count;
     }
