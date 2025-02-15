@@ -9,8 +9,7 @@ struct Point {
 };
 
 Point random_point_in_square() {
-  static std::random_device rd;
-  static std::mt19937 gen(rd());
+  thread_local static std::mt19937 gen(std::random_device{}());
   static std::uniform_real_distribution<double> dist(0, 1);
   return Point{dist(gen), dist(gen)};
 }
@@ -24,15 +23,15 @@ auto validate_input(std::istream& in) {
     std::exit(1);
   }
 
-  return input;
+  return static_cast<size_t>(input);
 }
 
 int main() {
   std::cout << "How many samples to take for estimating pi?\n";
 
-  const double iterations = validate_input(std::cin);
-  int accepted_count = 0;
-  for (int i = 0; i < iterations; ++i) {
+  const size_t iterations = validate_input(std::cin);
+  size_t accepted_count = 0;
+  for (size_t i = 0; i < iterations; ++i) {
     if (is_point_in_circle(random_point_in_square())) {
       ++accepted_count;
     }
