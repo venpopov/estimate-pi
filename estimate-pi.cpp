@@ -21,8 +21,7 @@ int main() {
   std::cout << "How many samples to take for estimating pi?\n";
 
   double input;
-  if (!(std::cin >> input) || input <= 0 ||
-      input > std::numeric_limits<int>::max()) {
+  if (!(std::cin >> input) || input <= 0 || input > std::numeric_limits<int>::max()) {
     std::cerr << "Please enter a positive number within integer range\n";
     return 1;
   }
