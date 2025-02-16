@@ -32,7 +32,7 @@ int main() {
 
   const auto iterations = validate_input(std::cin);
   std::size_t accepted_count = 0;
-  for (auto i = 0; i < iterations; ++i) {
+  for (size_t i = 0; i < iterations; ++i) {
     if (is_point_in_circle(random_point_in_square())) {
       ++accepted_count;
     }
